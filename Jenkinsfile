@@ -1,15 +1,12 @@
 pipeline {
-  agent any
-  stages {
-    stage('First stage'){
-      steps {
-        echo "I'm runing"  
-      }
+    agent any
+
+    stages {
+        stage('Git') {
+            steps {
+                sh 'git clone https://github.com/IgorVityukhovsky/example-playbook.git && cd example-playbook && ansible-playbook site.yml -e "ansible_become_password=123"'
+            }
+        }
+        
     }
-    stage('Second stage'){
-      steps {
-        echo "And I'm too"
-      }
-    }
-  }
 }
