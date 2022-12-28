@@ -18,3 +18,27 @@ pipeline {
     }
 }
 ```
+Так же всё получилось с использованием его из репозитория  
+Создал ScriptedJenkinsfile, наполнил его скриптом из ДЗ  
+На ноду добавил label "ansible_docker" что бы задача запускалась  
+Заменил credentialsId на собственные, выложил файл ScriptedJenkinsfile в репозиторий
+С учетом правок для устранения ошибок привёл его к виду:
+```
+node("ansible_docker"){
+    stage("Git checkout"){
+        git credentialsId: 'igor', url: 'git@github.com:aragastmatb/example-playbook.git'
+    }
+    stage("Check ssh key"){
+        secret_check=true
+    }
+    stage("Run playbook"){
+        if (secret_check){
+            sh 'ansible-playbook site.yml -i inventory/prod.yml -e "ansible_become_password=123"'
+        }
+        else{
+            echo 'no more keys'
+        }
+        
+    }
+}
+```
