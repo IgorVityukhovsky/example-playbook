@@ -21,7 +21,7 @@ pipeline {
 Так же всё получилось с использованием его из репозитория  
 Создал ScriptedJenkinsfile, наполнил его скриптом из ДЗ  
 На ноду добавил label "ansible_docker" что бы задача запускалась  
-Заменил credentialsId на собственные, выложил файл ScriptedJenkinsfile в репозиторий
+Заменил credentialsId на собственные, выложил файл ScriptedJenkinsfile в репозиторий  
 С учетом правок для устранения ошибок привёл его к виду:
 ```
 node("ansible_docker"){
